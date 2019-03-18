@@ -216,7 +216,7 @@ p {
 	padding: 100px 0;
 	background: url(images/background3.jpg);
 	background-size: cover;
-	min-height: 100vh;
+	min-height: 50vh;
 }
 .contact form {
 	position: relative;
@@ -279,7 +279,7 @@ footer {
 	    padding-left: 1rem;
 	}
 }
-@media (max-width: 1500px) {
+@media (max-width: 992px) {
 	.navbar-light .navbar-toggler {
 	    background: #fff;
 	    border-radius: 0;
