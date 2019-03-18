@@ -216,7 +216,7 @@ p {
 	padding: 100px 0;
 	background: url(images/background3.jpg);
 	background-size: cover;
-	min-height: 50vh;
+	min-height: 100vh;
 }
 .contact form {
 	position: relative;
