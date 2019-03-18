@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+<body>
+	<div class="layout">
+    <div class="sidebar">
+      <br> 
+      <img src="sidebar/значек дропбокс.png" alt="дропбокс" style="margin-left: 77px;">
+      <div>
+        <form class="sidebar_text" >
+          <p><input type="image" src="sidebar/file.png"  width= "17px;" height = "21px;"> <input type="button" value="Files" class="button sidebar_text" width= "17px;" height = "21px;"> 
+           </p>     
+          <p><input type="image" src="sidebar/photos.png"   width= "16px;" height = "17px;"> <input type="button" value="Photos" class="button sidebar_text" width= "17px;" height = "21px;"> 
+          </p>    
+          <p><input type="image" src="sidebar/sharing.png"   width= "18px;" height = "22px;"> <input type="button" value="Sharing" class="button sidebar_text" width= "17px;" height = "21px;"> 
+          </p>     
+          <p><input type="image" src="sidebar/links.png"   width= "18px;" height = "6px;">  <input type="button" value="Links" class="button sidebar_text" width= "17px;" height = "21px;">
+          </p>    
+          <p><input type="image" src="sidebar/events.png"   width= "18px;" height = "18px;">  <input type="button" value="Events" class="button sidebar_text" width= "17px;" height = "21px;">
+          </p>     
+          <p><input type="image" src="sidebar/get-started.png"   width= "17px;" height = "21px;" > <input type="button" value="Get Started" class="button sidebar_text" width= "17px;" height = "21px;">
+          <input type="image" src="sidebar/counter3.png" width= "17px;" height = "17px;" style="float: right; margin: 13px 10px 0 0"></p>     
+        </form>
+        
+        <p class="sidebar_text_b" style="margin: 210px 0 0 27px;">50 GB / 100 GB<input type="image" src="sidebar/add.png" width= "18px;" height = "18px;" style="float: right; margin: 12px 26px 0 0"></p>
+        <center><input type="image" src="sidebar/2-layers.png" style="margin: 0 0 20px 0"></center>
+        <br>
+        <p><center><button class=" button_upgrade_account border_button"><input type="image" src="sidebar/upgrade-arrow.png" style="margin: 0 15px 0 0 ">Upgrade account</button>
+        </center>
+        </p>
+      </div>
+    </div>
+    <div class="content ">
+      <header>
+        <form action="" method="get" id="searchform">
+          <input type="image" src="content/search.png" width= "15px;" height = "18px;" style="margin: 15px 0 0 28px;"> 
+          <input type="text" value="" class="search" placeholder = "Search...">
+        </form>
+        <form style="margin: -17px  0 0 0">        
+          <select id="cd-dropdown" class="tag_name">
+            <option>Eddie Lobanovskiy</option>
+          </select>
+          <input type="image" src="sidebar/Ring.png"  width= "13px;" height = "18px;" style="float: right; margin: 0 0 0 10px">
+        </form>
+        <div>
+          <div class="text_in_header">Photos</div>  
+        </div>
+        <form>
+          <div data-title="Upload" class = "active_icon"><input type="image" src="sidebar/Upload file.png"  width= "19px;" height = "22px;" style="margin: 0 15px 2px 24px;"></div>
+          <div data-title="New" class = "active_icon"><input type="image" src="sidebar/Newfolder.png"  width= "24px;" height = "21px;" style="margin: 0 10px 2px 14px;"></div>
+         <div data-title="Share" class = "active_icon"><input type="image" src="sidebar/share folder.png"  width= "17px;" height = "22px;" style="margin: 0 10px 2px 24px;"></div>
+          <div data-title="Delete" class = "active_icon"><input type="image" src="sidebar/Delete.png"  width= "16px;" height = "18px;" style="margin: 0 10px 3px 24px;"></div>
+          <button id = "Modified" value="Modified" class = "btn button_sort button" style="color: #697a94;">Modified</button>
+          <button id="Size" value="Size" class = "button_sort button" style="color: #697a94;">Size</button>
+          <button id="Name" value="Name" class = "button_sort button" style="color: #697a94;">Name</button>
+        </form>
+        <div class="form"></div>
+      </header>
+      <br>
+    	<div class="layer">
+        <div class="input-check">
+          <figure class="fig">
+            <input type="checkbox" id="checkBox01" >
+            <label for="checkBox01"><img src="content/Sad_Clown.png" alt="Sad Clown"></label>    
+            <figcaption>Sad Clown.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox02" >
+            <label for="checkBox02"><img src="content/Waiting_for_the_train.png" alt="Waiting_for_the_train"></label>    
+            <figcaption>Sad Clown.png</figcaption>
+          </figure>	
+          <figure class="fig">
+            <input type="checkbox" id="checkBox03" >
+            <label for="checkBox03"><img src="content/Little_friends.jpg" alt="Little_friends"></label>
+            <figcaption>Little friends.jpg</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox04" >
+            <label for="checkBox04"><img src="content/What_a_wanderful.jpg" alt="What_a_wanderful"></label>
+            <figcaption>What a wanderful.jpg</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox05" >
+            <label for="checkBox05"><img src="content/Gymnast.jpg" alt="Gymnast"></label>
+            <figcaption>Gymnast.jpg</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox06" >
+            <label for="checkBox06"><img src="content/Blue_Dandelion_Drops.jpg" alt="Blue_Dandelion_Drops"></label>
+            <figcaption>Blue Dandelion Drops.jpg</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox07" >
+            <label for="checkBox07"><img src="content/Poppy_for_Mom.png" alt="Poppy_for_Mom"></label>
+            <figcaption>Poppy for Mom.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox08" >
+            <label for="checkBox08"><img src="content/Drop_some_droplets.png" alt="Drop_some_droplets"></label>
+            <figcaption>Drop some droplets.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox09" >
+            <label for="checkBox09"><img src="content/Daisy.png" alt="Daisy"></label>
+            <figcaption>Daisy.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox10" >
+            <label for="checkBox10"><img src="content/Sunshine.png" alt="Sunshine"></label>
+            <figcaption>Sunshine.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox11" >
+            <label for="checkBox11"><img src="content/картинка1.png" alt="картинка1"></label>
+            <figcaption>картинка1.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox12" >
+            <label for="checkBox12"><img src="content/картинка2.png" alt="картинка2"></label>
+            <figcaption>картинка2.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox13" >
+            <label for="checkBox13"><img src="content/картинка3.png" alt="картинка3.png"></label>
+            <figcaption>картинка3.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox14" >
+            <label for="checkBox14"><img src="content/картинка4.png" alt="картинка4.png"></label>
+            <figcaption>картинка4.png</figcaption>
+          </figure>
+          <figure class="fig">
+            <input type="checkbox" id="checkBox15" >
+            <label for="checkBox15"><img src="content/картинка5.png" alt="картинка5.png"></label>
+            <figcaption>картинка5.png</figcaption>
+          </figure>
+        </div> 
+        <p class="polosa"></p>   
+    	</div>      
+    </div>
+  </div>
+</body>
+</html>
