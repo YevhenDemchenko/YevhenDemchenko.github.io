@@ -8,8 +8,7 @@
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 	<link rel="stylesheet" href="./style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="script.js"></script>
+	<script src="skript.js"></script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<header>
@@ -102,7 +101,7 @@
 				<div>
 					<h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Resume</h2>
 					<p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">You can download my resume</p>
-					<a href="https://github.com/YevhenDemchenko/YevhenDemchenko.github.io/raw/master/%D0%A0%D0%B5%D0%B7%D1%8E%D0%BC%D0%B5%20%D0%94%D0%B5%D0%BC%D1%87%D0%B5%D0%BD%D0%BA%D0%BE%20.pdf" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1">DOWNLOAD</a>
+					<a href="https://doc-0c-7s-docs.googleusercontent.com/docs/securesc/lk270bfmecpgqda43t6cfkh41kcn0kip/4bqpdrs2jssp59qtcgdmsecr3vb23dbn/1552824000000/14148853849929604883/14148853849929604883/1B00wpwlWyy8g6XgGr5y031rzcMY7u6Cj?e=download" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1">DOWNLOAD</a>
 				</div>
 			</div>
 		</div>
@@ -177,15 +176,15 @@
 			</div>
 			<div class="row clearfix">
 				<div class="offset-sm-2 col-sm-8">
-					<form name="form1" id="form1" enctype="text/plain" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" action="" onsubmit="return (validName()&&validEmail()&&validMessage())" novalidate>
+					<form id="form1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" method="post" action="send.php" onsubmit="return (validName()&&validEmail()&&validMessage())" novalidate>
 						<div class="form-group">
 							<label>Name</label>
-							<input type="text" id="name" name="name" class="form-control">
+							<input type="text" id="name" name="name" class="form-control" >
 							<span id="message1" ></span>
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" name="email" id="email" class="form-control">
+							<input type="email" name="email" class="form-control" id="mail" >
 							<span id="message2" ></span>
 						</div>
 						<div class="form-group">
