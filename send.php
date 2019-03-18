@@ -11,7 +11,7 @@ $email = $_POST['email'];
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp-relay.gmail.com';  																							// Specify main and backup SMTP servers
+$mail->Host = 'smtp.gmail.com';  																							// Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
 $mail->Username = 'postportfolio13@gmail.com'; // Ваш логин от почты с которой будут отправляться письма
 $mail->Password = '98omovep'; // Ваш пароль от почты с которой будут отправляться письма
