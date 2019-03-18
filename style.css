@@ -279,7 +279,7 @@ footer {
 	    padding-left: 1rem;
 	}
 }
-@media (max-width: 992px) {
+@media (max-width: 1500px) {
 	.navbar-light .navbar-toggler {
 	    background: #fff;
 	    border-radius: 0;
