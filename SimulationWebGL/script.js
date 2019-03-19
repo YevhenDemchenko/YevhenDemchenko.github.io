@@ -18,7 +18,16 @@ let config = {
     COLORFUL: true,                     //разные цвета
     PAUSED: false,
     BACK_COLOR: { r: 0, g: 0, b: 0 },
-    TRANSPARENT: false
+    TRANSPARENT: false,
+    ANIMATION: 1
+}
+function buttonA() {
+    var but1 = document.getElementById("but1").value;
+    config['ANIMATION'] = but1;
+}
+function buttonB() {
+    var but2 = document.getElementById("but2").value;
+    config['ANIMATION'] = but2;
 }
 
 function pointerPrototype () {
@@ -172,7 +181,8 @@ function compileShader (type, source) {
     return shader;
 };
 //положение каждой вершины
-const baseVertexShader = compileShader(gl.VERTEX_SHADER, `
+if(config.ANIMATION == 1) {
+var baseVertexShader = compileShader(gl.VERTEX_SHADER, `
     precision highp float;
 
     attribute vec2 aPosition;
@@ -193,7 +203,7 @@ const baseVertexShader = compileShader(gl.VERTEX_SHADER, `
     }
 `);
 /////цвет каждого пикселя
-const clearShader = compileShader(gl.FRAGMENT_SHADER, `
+var clearShader = compileShader(gl.FRAGMENT_SHADER, `
     precision mediump float;
     precision mediump sampler2D;
 
@@ -206,7 +216,7 @@ const clearShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const colorShader = compileShader(gl.FRAGMENT_SHADER, `
+var colorShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;                                //mediump
 
     uniform vec4 color;
@@ -216,7 +226,7 @@ const colorShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const backgroundShader = compileShader(gl.FRAGMENT_SHADER, `
+var backgroundShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -234,7 +244,7 @@ const backgroundShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const displayShader = compileShader(gl.FRAGMENT_SHADER, `
+var displayShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -248,7 +258,7 @@ const displayShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const displayShadingShader = compileShader(gl.FRAGMENT_SHADER, `
+var displayShadingShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -281,7 +291,7 @@ const displayShadingShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const splatShader = compileShader(gl.FRAGMENT_SHADER, `
+var splatShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -301,7 +311,7 @@ const splatShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const advectionManualFilteringShader = compileShader(gl.FRAGMENT_SHADER, `
+var advectionManualFilteringShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -334,7 +344,7 @@ const advectionManualFilteringShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
+var advectionShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -352,7 +362,7 @@ const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
+var divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
     precision mediump float;
     precision mediump sampler2D;
 
@@ -380,7 +390,7 @@ const divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const curlShader = compileShader(gl.FRAGMENT_SHADER, `
+var curlShader = compileShader(gl.FRAGMENT_SHADER, `
     precision mediump float;
     precision mediump sampler2D;
 
@@ -401,7 +411,7 @@ const curlShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
+var vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
     precision highp float;
     precision highp sampler2D;
 
@@ -432,7 +442,7 @@ const vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const pressureShader = compileShader(gl.FRAGMENT_SHADER, `
+var pressureShader = compileShader(gl.FRAGMENT_SHADER, `
     precision mediump float;
     precision mediump sampler2D;
 
@@ -460,7 +470,7 @@ const pressureShader = compileShader(gl.FRAGMENT_SHADER, `
     }
 `);
 
-const gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
+var gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
     precision mediump float;
     precision mediump sampler2D;
 
@@ -488,6 +498,326 @@ const gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
         gl_FragColor = vec4(velocity, 0.0, 1.0);
     }
 `);
+}
+else if(config.ANIMATION == 2) {
+    var baseVertexShader = compileShader(gl.VERTEX_SHADER, `
+    precision highp float;
+
+    attribute vec2 aPosition;
+    varying vec2 vUv;
+    varying vec2 vL;
+    varying vec2 vR;
+    varying vec2 vT;
+    varying vec2 vB;
+    uniform vec2 texelSize;
+
+    void main () {
+        vUv = aPosition * 0.5 + 0.5;
+        vL = vUv - vec2(texelSize.x, 0.0);
+        vR = vUv + vec2(texelSize.x, 0.0);
+        vT = vUv + vec2(0.0, texelSize.y);
+        vB = vUv - vec2(0.0, texelSize.y);
+        gl_Position = vec4(aPosition, 0.0, 1.0);
+    }
+`);
+/////цвет каждого пикселя
+var clearShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision mediump float;
+    precision mediump sampler2D;
+
+    varying highp vec2 vUv;
+    uniform sampler2D uTexture;
+    uniform float value;
+
+    void main () {
+        gl_FragColor = value * texture2D(uTexture, vUv);
+    }
+`);
+
+var colorShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;                                //mediump
+
+    uniform vec4 color;
+
+    void main () {
+        gl_FragColor = color;
+    }
+`);
+
+var backgroundShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    uniform sampler2D uTexture;
+    uniform float aspectRatio;
+
+    #define SCALE 25.0
+
+    void main () {
+        vec2 uv = floor(vUv * SCALE * vec2(aspectRatio, 1.0));
+        float v = mod(uv.x + uv.y, 2.0);
+        v = v * 3.1 + 0.8;
+        gl_FragColor = vec4(vec3(v), 1.0);
+    }
+`);
+
+var displayShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    uniform sampler2D uTexture;
+
+    void main () {
+        vec3 C = texture2D(uTexture, vUv).rgb;
+        float a = max(C.r, max(C.g, C.b));
+        gl_FragColor = vec4(C, a);
+    }
+`);
+//затенение
+var displayShadingShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    varying vec2 vL;
+    varying vec2 vR;
+    varying vec2 vT;
+    varying vec2 vB;
+    uniform sampler2D uTexture;
+    uniform vec2 texelSize;
+
+    void main () {
+        vec3 L = texture2D(uTexture, vL).rgb;
+        vec3 R = texture2D(uTexture, vR).rgb;
+        vec3 T = texture2D(uTexture, vT).rgb;
+        vec3 B = texture2D(uTexture, vB).rgb;
+        vec3 C = texture2D(uTexture, vUv).rgb;
+
+        float dx = length(R) - length(L);
+        float dy = length(T) - length(B);
+
+        vec3 n = vec3(dx, dy, length(texelSize));
+        vec3 l = vec3(0.0, 0.0, 1.0);
+
+        float diffuse = clamp(dot(n, l) + 7.7, 7.7, 1.0);         //густота жидкости. чем выше значение больше похоже на дым 0.7 жидкость 3.7 дым
+        C.rgb *= diffuse;
+
+        float a = max(C.r, max(C.g, C.b));
+        gl_FragColor = vec4(C, a);
+    }
+`);
+
+var splatShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    uniform sampler2D uTarget;
+    uniform float aspectRatio;
+    uniform vec3 color;
+    uniform vec2 point;
+    uniform float radius;
+
+    void main () {
+        vec2 p = vUv - point.xy;
+        p.x *= aspectRatio*1.2;                                             //меняется плотность фигуры +3,0
+        vec3 splat = exp(-dot(p, p) / radius*1.2 + 0.1) * color;            //добавить + 1.0 к радиусу будет ярче и больше
+        vec3 base = texture2D(uTarget, vUv).xyz;
+        gl_FragColor = vec4(base + splat, 1.0);
+    }
+`);
+//Ручная фильтрация 
+var advectionManualFilteringShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    uniform sampler2D uVelocity;
+    uniform sampler2D uSource;
+    uniform vec2 texelSize;
+    uniform vec2 dyeTexelSize;
+    uniform float dt;
+    uniform float dissipation;
+
+    vec4 bilerp (sampler2D sam, vec2 uv, vec2 tsize) {
+        vec2 st = uv / tsize - 0.5;
+
+        vec2 iuv = floor(st);
+        vec2 fuv = fract(st);
+
+        vec4 a = texture2D(sam, (iuv + vec2(0.5, 0.5)) * tsize);    //tsize*2,0 больше размытия
+        vec4 b = texture2D(sam, (iuv + vec2(1.5, 0.5)) * tsize);
+        vec4 c = texture2D(sam, (iuv + vec2(0.5, 1.5)) * tsize);
+        vec4 d = texture2D(sam, (iuv + vec2(1.5, 1.5)) * tsize);
+
+        return mix(mix(a, b, fuv.x), mix(c, d, fuv.x), fuv.y);
+    }
+
+    void main () {
+        vec2 coord = vUv - dt * bilerp(uVelocity, vUv, texelSize).xy * texelSize;
+        gl_FragColor = dissipation * bilerp(uSource, coord, dyeTexelSize);
+        gl_FragColor.a = 1.0;
+    }
+`);
+//передача цвета
+var advectionShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    uniform sampler2D uVelocity;
+    uniform sampler2D uSource;
+    uniform vec2 texelSize;
+    uniform float dt;
+    uniform float dissipation;
+
+    void main () {
+        vec2 coord = vUv - dt * texture2D(uVelocity, vUv).xy * texelSize;
+        gl_FragColor = dissipation * texture2D(uSource, coord);
+        gl_FragColor.a = 1.0;
+    }
+`);
+//расхождение
+var divergenceShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision mediump float;
+    precision mediump sampler2D;
+
+    varying highp vec2 vUv;
+    varying highp vec2 vL;
+    varying highp vec2 vR;
+    varying highp vec2 vT;
+    varying highp vec2 vB;
+    uniform sampler2D uVelocity;
+
+
+    void main () {
+        float L = texture2D(uVelocity, vL).x;
+        float R = texture2D(uVelocity, vR).x;
+        float T = texture2D(uVelocity, vT).y;
+        float B = texture2D(uVelocity, vB).y;
+
+        vec2 C = texture2D(uVelocity, vUv).xy;
+        if (vL.x < 0.0) { L = -C.x; }
+        if (vR.x > 1.0) { R = -C.x; }
+        if (vT.y > 1.0) { T = -C.y; }
+        if (vB.y < 0.0) { B = -C.y; }
+
+        float div = 0.1 * (R - L + T - B);
+        gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
+    }
+`);
+
+var curlShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision mediump float;
+    precision mediump sampler2D;
+
+    varying highp vec2 vUv;
+    varying highp vec2 vL;
+    varying highp vec2 vR;
+    varying highp vec2 vT;
+    varying highp vec2 vB;
+    uniform sampler2D uVelocity;
+
+    void main () {
+        float L = texture2D(uVelocity, vL).y;
+        float R = texture2D(uVelocity, vR).y;
+        float T = texture2D(uVelocity, vT).x;
+        float B = texture2D(uVelocity, vB).x;
+        float vorticity = R - L - T + B;                     
+        gl_FragColor = vec4(-0.5 * vorticity, 0.0, 0.0, 1.0); //0,5 уменьшать будет гладким
+    }
+`);
+
+var vorticityShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision highp float;
+    precision highp sampler2D;
+
+    varying vec2 vUv;
+    varying vec2 vL;
+    varying vec2 vR;
+    varying vec2 vT;
+    varying vec2 vB;
+    uniform sampler2D uVelocity;
+    uniform sampler2D uCurl;
+    uniform float curl;
+    uniform float dt;
+
+    void main () {
+        float L = texture2D(uCurl, vL).x;
+        float R = texture2D(uCurl, vR).x;
+        float T = texture2D(uCurl, vT).x;
+        float B = texture2D(uCurl, vB).x;
+        float C = texture2D(uCurl, vUv).x;
+
+        vec2 force = 0.5 * vec2(abs(T) * 3.0 - abs(B), abs(L) - abs(R));  //изменить знаки смешивание с одной стороны
+        force /= length(force) + 0.0001;
+        force *= curl * C;
+        force.y *= -2.0;                                            //меняет густость картинки -1.5
+
+        vec2 vel = texture2D(uVelocity, vUv).xy;
+        gl_FragColor = vec4(vel + force * dt, 0.0, 1.0);
+    }
+`);
+
+var pressureShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision mediump float;
+    precision mediump sampler2D;
+
+    varying highp vec2 vUv;
+    varying highp vec2 vL;
+    varying highp vec2 vR;
+    varying highp vec2 vT;
+    varying highp vec2 vB;
+    uniform sampler2D uPressure;
+    uniform sampler2D uDivergence;
+
+    vec2 boundary (vec2 uv) {
+        return uv;
+    }
+
+    void main () {
+        float L = texture2D(uPressure, boundary(vL)).x;
+        float R = texture2D(uPressure, boundary(vR)).x;
+        float T = texture2D(uPressure, boundary(vT)).x;
+        float B = texture2D(uPressure, boundary(vB)).x;
+        float C = texture2D(uPressure, vUv).x;
+        float divergence = texture2D(uDivergence, vUv).x;
+        float pressure = (L + R + B + T - divergence) * 0.25;     //менять число будет более заокругленным
+        gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);
+    }
+`);
+
+var gradientSubtractShader = compileShader(gl.FRAGMENT_SHADER, `
+    precision mediump float;
+    precision mediump sampler2D;
+
+    varying highp vec2 vUv;
+    varying highp vec2 vL;
+    varying highp vec2 vR;
+    varying highp vec2 vT;
+    varying highp vec2 vB;
+    uniform sampler2D uPressure;
+    uniform sampler2D uVelocity;
+
+    vec2 boundary (vec2 uv) {
+        return uv;
+        // uv = min(max(uv, 0.0), 1.0);
+        // return uv;
+    }
+
+    void main () {
+        float L = texture2D(uPressure, boundary(vL)).x;
+        float R = texture2D(uPressure, boundary(vR)).x;
+        float T = texture2D(uPressure, boundary(vT)).x;
+        float B = texture2D(uPressure, boundary(vB)).x;
+        vec2 velocity = texture2D(uVelocity, vUv).xy;
+        velocity.xy -= vec2(R - L, T - B);
+        gl_FragColor = vec4(velocity, 0.0, 1.0);
+    }
+`);
+}
 
 const blit = (() => {
     gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
@@ -855,12 +1185,21 @@ window.addEventListener('keydown', e => {
         config.PAUSED = !config.PAUSED;
 });
 //////////////////////////////////////////////////////////////цвета
-function generateColor () {                       
-    let c = HSVtoRGB(Math.random(), 1.0, 1.0);  //тусклость цвета и его генерация
-    c.r *= 0.25;                                //яркость цвета
-    c.g *= 0.25;
-    c.b *= 0.25;
-    return c;
+function generateColor () {  
+    if(config.ANIMATION == 1){                     
+        let c = HSVtoRGB(Math.random(), 1.0, 1.0);  //тусклость цвета и его генерация
+        c.r *= 0.25;                                //яркость цвета
+        c.g *= 0.25;
+        c.b *= 0.25;
+        return c;
+    }
+    else if(config.ANIMATION == 2){
+        let c = HSVtoRGB(0.0, 0.0, 1.0);  //тусклость цвета и его генерация Math.random(), 1.0, 1.0
+        c.r *= 0.1;                                //яркость цвета
+        c.g *= 0.1;
+        c.b *= 0.1;
+        return c;
+    }
 }
 
 function HSVtoRGB (h, s, v) {
