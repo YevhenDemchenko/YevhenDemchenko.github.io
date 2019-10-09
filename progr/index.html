@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Диплом магістр</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+
+
+  <script type="text/javascript" src="src/Blowfish.js"></script>
+  <script type="text/javascript" src="src/GOST.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+  <script type="text/javascript" src="http://yandex.st/jquery/1.4.2/jquery.min.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+<div class="form-group justify-content-center align-items-center" align="center" id="main">
+  <form>
+    <textarea name="text" rows="5" cols="50" id="data" placeholder="Введіть текст"></textarea><br><br>
+    <textarea name="result" rows="5" cols="50" id="result" placeholder="Результат шифрування"></textarea><br/><br/>
+    <input type="text" name="password" size="56" id="key" placeholder="Введіть пароль"/><br/><br/>
+    <input type="submit" name="encrypt" value="Зашифровать Blowfish">
+    <input type="submit" name="decrypt" value="Расшифровать Blowfish"><br/><br/>
+    <input type="submit" name="encryptG" value="Зашифровать GOST">
+    <input type="submit" name="decryptG" value="Расшифровать GOST"><br/><br/>
+    <input type="submit" name="encryptA"  value="Зашифровать AES">
+    <input type="submit" name="decryptA"  value="Расшифровать AES"><br/><br/>
+
+    <textarea name="resultB" rows="2" cols="30" id="timeB" placeholder="Результат шифрування Blowfish"></textarea>
+    <textarea name="resultG" rows="2" cols="30" id="timeG" placeholder="Результат шифрування GOST"></textarea>
+    <textarea name="resultA" rows="2" cols="30" id="timeA" placeholder="Результат шифрування AES"></textarea>
+  </form>
+</div>
+
+
+  <script type="text/javascript" src="GOSTScript.js"></script>
+  <script type="text/javascript" src="BlowfishScript.js"></script>
+  <script src="AESScript.js"></script>
+
+</body>
+</html>
